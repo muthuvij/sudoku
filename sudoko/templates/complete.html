@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+
+      <title>Sudoko</title>
+
+  </head>
+
+  <body>
+
+    <style>
+
+      table { border-collapse: collapse;}
+      colgroup, tbody { border: solid medium; }
+      td { border: solid thin; height: 2.5em; width: 2.5em; text-align: center; padding: 0; }
+
+    </style>
+
+    <table>
+
+      <caption><h1>Correct!!</h1></caption>
+      <colgroup><col><col><col></colgroup>
+      <colgroup><col><col><col></colgroup>
+      <colgroup><col><col><col></colgroup>
+
+      {% for i in board %}
+	{% if forloop.counter|add:-1|divisibleby:3 %}
+          <tbody>
+	{% endif %}
+	<tr>
+	{% for j in i %}
+	  {% if j > 10 %}
+	    <td style = 'color:violet'>
+	    {{ j|add:-10 }}
+	  {% else %}
+	    <td style = 'color:green'>
+	    {{ j }}
+	  {% endif %}
+	{% endfor %}
+      {% endfor %}
+
+    </table>
+    <br/>
+
+    <a href="http://127.0.0.1:8000/sudoko">
+      <input type='submit' value='new game'/>
+    </a> 
+
+  </body>
+</html>

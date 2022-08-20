@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+
+      <title>Sudoko</title>
+
+  </head>
+
+  <body>
+
+    <style>
+
+      table { border-collapse: collapse;}
+      colgroup, tbody { border: solid medium; }
+      td { border: solid thin; height: 2.5em; width: 2.5em; text-align: center; padding: 0; }
+
+    </style>
+
+    <table>
+
+      <caption><h1>Answer</h1></caption>
+      <colgroup><col><col><col></colgroup>
+      <colgroup><col><col><col></colgroup>
+      <colgroup><col><col><col></colgroup>
+
+      {% for i in board %}
+	{% if forloop.counter|add:-1|divisibleby:3 %}
+          <tbody>
+	{% endif %}
+	<tr>
+	{% for j in i %}
+	  <td>{{ j }}
+	{% endfor %}
+      {% endfor %}
+
+    </table>
+    <br/><br/>
+
+    <form action='.' method='POST'>{% csrf_token %}
+
+      <input type='submit' value='new game'/>
+
+    </form>
+
+  </body>
+</html>

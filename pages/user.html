@@ -1,0 +1,29 @@
+<h3>{{ name|capfirst|title }}</h3>
+<h3>{{ name|center:'15' }}</h3>
+<h3>{{ name|capfirst|upper }}</h3>
+{{ header|safe }}
+{{ header|striptags }}
+<br/><br/>
+{{ request.user }}
+{{ request.user.is_authenticated }}
+
+<p>
+  {{ game_text }}, {{ name }}, {{ size }}
+</p>
+<ul>
+  <li>item 1</li>
+  <li>item 2</li>
+  <li>item 3</li>
+</ul>
+
+<ul>
+{% for item in my_list %}
+  {% if item == 123 %}
+    <li>{{ forloop.counter}} - {{ item|add:12 }}</li>
+  {% elif item == 423 %}
+    <li>{{ forloop.counter}} - {{ item|add:-12 }}</li>
+  {% else %}
+  <li>{{ forloop.counter}} - {{ item }}</li>
+  {% endif %}
+{% endfor %}
+</ul>

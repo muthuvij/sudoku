@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+
+      <title>Sudoko</title>
+
+  </head>
+
+  <body>
+
+    <style>
+
+      table { border-collapse: collapse;}
+      colgroup, tbody { border: solid medium; }
+      td { border: solid thin; height: 2.5em; width: 2.5em; text-align: center; padding: 0; }
+
+    </style>
+
+    <form action='.' method='POST'>{% csrf_token %}
+
+    <table>
+
+      <caption><h1>Sudoku of the day</h1></caption>
+      <colgroup><col><col><col></colgroup>
+      <colgroup><col><col><col></colgroup>
+      <colgroup><col><col><col></colgroup>
+
+      {% for i in board %}
+	{% if forloop.counter|add:-1|divisibleby:3 %}
+          <tbody>
+	{% endif %}
+	<tr>
+	{% for j in i %}
+	  {% if j == 0 %}
+	    <td>
+	    <input style='height:34px; width:34px ;' name='answer' type='text' maxlength='1'/>
+	  {% else %}
+	    <td style = 'color:green'>
+	    {{ j }}
+	  {% endif %}
+	{% endfor %}
+      {% endfor %}
+
+    </table>
+
+    <br/><br/>
+    <input type='submit' value='submit'/>
+
+    </form>
+
+    <br/>
+    <a href="http://127.0.0.1:8000/sudoko">
+      <input type='submit' value='reset'/>
+    </a> 
+
+    <a href="http://127.0.0.1:8000/sudoko/show_answer">
+      <input type='submit' value='show answer' />
+    </a>
+
+  </body>
+</html>
